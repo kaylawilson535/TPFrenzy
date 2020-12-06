@@ -1,0 +1,60 @@
+<div class = "container-fluid">
+    <h1>Create New Merchant ID</h1>
+    <form #merchantForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+
+        {{merchantForm.value | json}}
+        <hr>
+        {{merchantModel | json}}
+        <hr>
+
+        <div class = "form-group">
+            <label>Unique ID</label>
+            <input required type ="text" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class ="form-control" [(ngModel)]="merchantModel.merchantID" name="merchantID">
+        </div>
+
+        <div class = "form-group">
+            <label>Merchant Name</label>
+            <input required type ="text" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class ="form-control" name="merchantName" [(ngModel)]="merchantModel.merchantName" >
+        </div>
+
+        <div class = "form-group">
+            <label>Merchant Address</label>
+            <input required type ="text" #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class ="form-control" name="merchantAddress" [(ngModel)]="merchantModel.merchantAddress" >
+        </div>
+
+        <!--<div ngModelGroup="merchantAddress">
+            <div class="form-group">
+                <label>Street</label>
+                <input type="text" class="form-control" name="street" ngModel>
+            </div>
+            <div class="form-group">
+                <label>City</label>
+                <input type="text" class="form-control" name="city" ngModel>
+            </div>
+            <div class="form-group">
+                <label>State</label>
+                <input type="text" class="form-control" name="state" ngModel>
+            </div>
+            <div class="form-group">
+                <label>Postal Code</label>
+                <input type="text" class="form-control" name="postalCode" ngModel>
+            </div>
+        </div>-->
+        
+
+        <div class="mb-3">
+            <label>Currently, the TP at our store is </label>
+            <div class="form-check">
+                <input class="form-check-input" [(ngModel)]="merchantModel.stockValue"  type="radio" name="stockValue" value="inStock">
+                <label class="form-check-label">In Stock</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" [(ngModel)]="merchantModel.stockValue" type="radio" name="stockValue" value="outStock">
+                <label class="form-check-label">Out of Stock</label>
+            </div>
+        </div>
+
+        <button [disabled]="merchantForm.form.invalid" type="submit">Create Merchant ID</button>
+
+    </form>
+</div>

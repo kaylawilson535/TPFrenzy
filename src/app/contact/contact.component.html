@@ -1,0 +1,39 @@
+<h1>The Merchant Updater</h1>
+<p>This page will update, push to, the tplocations database</p>
+
+<form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+    <h5 *ngIf="success">Your form is valid</h5>
+
+    <label>
+        Merchant ID:
+        <input type="text" formControlName="merchantID">
+        <div *ngIf="submitted && messageForm.controls.merchantID.errors" class="error">
+        <div *ngIf="messageForm.controls.merchantID.errors.required">Your name is required</div>
+        </div>
+    </label>
+    
+    <a routerLink="/addid">Need a Merchant ID?</a>
+
+<br>
+    <label>
+        
+        How is the TP at your store? <br>
+        <input type = "radio" id="inStock" value="inStock" formControlName = "message">
+        <label for="inStock">In Stock</label>
+
+        <input type = "radio" id="outStock" value="outStock" formControlName = "message">
+        <label for="outStock">Out of Stock</label>
+        
+    </label>
+<br>
+    <input type="submit" value="Save Store TP Status" class="cta">
+
+</form>
+
+<div *ngIf="submitted" class="results">
+    <strong>Merchant ID: </strong>
+    <span>{{ messageForm.controls.merchantID.value }}</span>
+
+    <strong>Message: </strong>
+    <span>{{ messageForm.controls.message.value }}</span>
+</div>
